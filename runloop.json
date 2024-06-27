@@ -1,0 +1,6 @@
+{
+  "exportSearchPaths": "runloop",
+  "buildOptions": {
+    "installCommand": "make install"
+  }
+}
