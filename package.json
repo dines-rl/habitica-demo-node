@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@grpc/grpc-js": "^1.10.9",
-    "@runloop/runloop": "^0.0.3",
+    "@runloop/runloop": "^0.0.5",
     "dotenv": "^16.4.5",
     "tree-sitter": "^0.21.1",
     "ts-proto": "^1.178.0"
