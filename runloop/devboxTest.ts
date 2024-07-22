@@ -24,17 +24,44 @@ export const useDevbox = RLFunc({
     //);
     //await devbox.execTool.exec("cd code && ls -la");
     //await devbox.execTool.exec("cd code && npm i");
-
-    logger.info("File tools Create");
-    //await devbox.fileTool.createFile("test.txt", "Hello World");
-
-    logger.info("File tools read");
-    //let readResult = await devbox.fileTool.readFile("test.txt");
-
-    logger.info(`File Read result: ${readResult}`);
-    //let result = await devbox.execTool.exec("cd code && npm run lint");
-    logger.info(`Lint result${result.stdout}`);
-
     return { Hello: "World" };
+  },
+});
+
+function myFakeFunction() {
+  // Strings
+  console.log("Hello");
+  console.info("Hello");
+  console.warn("Hello");
+  console.error("Hello");
+  console.debug("Hello");
+
+  // Objects
+  console.log({ a: 1 });
+  console.info({ a: 1 });
+  console.warn({ a: 1 });
+  console.error({ a: 1 });
+  console.debug({ a: 1 });
+
+  // Multiple mixed args
+  console.log("Hello", { a: 1 });
+  console.info("Hello", { a: 1 });
+  console.warn("Hello", { a: 1 });
+  console.error("Hello", { a: 1 });
+  console.debug("Hello", { a: 1 });
+
+  // Errors
+  console.error("In Error Stream");
+  console.error(new Error("Test Error"));
+}
+
+const workerNum = Math.floor(Math.random() * 100);
+export const example1Add = RLFunc({
+  id: "example1Add",
+  run: async ({ a, b }) => {
+    console.log("3");
+    console.log("example1Add called with a=" + a + " b=" + b);
+    myFakeFunction();
+    return workerNum;
   },
 });
