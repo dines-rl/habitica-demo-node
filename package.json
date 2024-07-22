@@ -1,6 +1,6 @@
 {
   "name": "demo_node_app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A demo node app for our new Node lambda functions",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
