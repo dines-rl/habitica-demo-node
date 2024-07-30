@@ -1,8 +1,8 @@
+require("events").EventEmitter.defaultMaxListeners = 100;
+
 import { RLFunc } from "@runloop/runloop";
 
 let gh_token = process.env.GH_TOKEN;
-
-process.setMaxListeners(200);
 
 export const useDevbox = RLFunc({
   id: "useDevbox",
