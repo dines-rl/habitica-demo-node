@@ -2,6 +2,8 @@ import { RLFunc } from "@runloop/runloop";
 
 let gh_token = process.env.GH_TOKEN;
 
+process.setMaxListeners(200);
+
 export const useDevbox = RLFunc({
   id: "useDevbox",
   run: async function (request, { systemCoordinator, logger }) {
@@ -9,6 +11,7 @@ export const useDevbox = RLFunc({
     const devbox = await systemCoordinator.createDevbox(undefined, {
       name: "readbox",
     });
+
     await devbox.fileTool.writeFile("test.txt", "Hello World");
     let promises = <Promise<string>[]>[];
     for (let i = 0; i < num; i++) {
