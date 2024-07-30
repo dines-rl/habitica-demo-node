@@ -12,6 +12,10 @@ export const useDevbox = RLFunc({
       name: "readbox",
     });
 
+    for (let i = 0; i < num; i++) {
+      await devbox.fileTool.readFile("test.txt");
+    }
+
     await devbox.fileTool.writeFile("test.txt", "Hello World");
     let promises = <Promise<string>[]>[];
     for (let i = 0; i < num; i++) {
