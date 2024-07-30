@@ -14,11 +14,8 @@ export const useDevbox = RLFunc({
     ((devbox.execTool as any).sshClient as any).ssh.connection?.setMaxListeners(
       200
     );
-    throw new Error("Test Error");
+
     await devbox.fileTool.writeFile("test.txt", "Hello World");
-    for (let i = 0; i < num; i++) {
-      await devbox.fileTool.readFile("test.txt");
-    }
 
     let promises = <Promise<string>[]>[];
     for (let i = 0; i < num; i++) {
