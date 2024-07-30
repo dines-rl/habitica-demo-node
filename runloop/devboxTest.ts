@@ -11,7 +11,9 @@ export const useDevbox = RLFunc({
     const devbox = await systemCoordinator.createDevbox(undefined, {
       name: "readbox",
     });
-
+    ((devbox.execTool as any).sshClient as any).ssh.connection?.setMaxListeners(
+      200
+    );
     await devbox.fileTool.writeFile("test.txt", "Hello World");
     for (let i = 0; i < num; i++) {
       await devbox.fileTool.readFile("test.txt");
