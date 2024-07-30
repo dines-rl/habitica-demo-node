@@ -5,26 +5,17 @@ let gh_token = process.env.GH_TOKEN;
 export const useDevbox = RLFunc({
   id: "useDevbox",
   run: async function (request, { systemCoordinator, logger }) {
-    logger.info(`TOKEN: ${gh_token}`);
-    // write code to log counting up every second for 1000 seconds
-    let count = 0;
-    while (count++ < 1000) {
-      logger.info("Hello World " + count);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    let num = (request.num as number) || 10;
+    const devbox = await systemCoordinator.createDevbox(undefined, {
+      name: "readbox",
+    });
+    await devbox.fileTool.writeFile("test.txt", "Hello World");
+    let promises = <Promise<string>[]>[];
+    for (let i = 0; i < num; i++) {
+      promises.push(devbox.fileTool.readFile("test.txt"));
     }
-
-    //let devbox = await systemCoordinator.createDevbox(undefined, undefined, [
-    //  "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -",
-    //  "sudo apt install -y --no-install-recommends nodejs libkrb5-dev",
-    //]);
-    logger.info("Devbox created: ");
-
-    //await devbox.execTool.exec(
-    //  `GH_TOKEN=${gh_token} gh repo clone HabitRPG/habitica ./code -- --depth=1`
-    //);
-    //await devbox.execTool.exec("cd code && ls -la");
-    //await devbox.execTool.exec("cd code && npm i");
-    return { Hello: "World" };
+    await Promise.all(promises);
+    return num;
   },
 });
 
